@@ -52,7 +52,8 @@ fun TopBarAndBackground(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.Center),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            alpha = 0.7F
         )
         Row(
             verticalAlignment = Alignment.CenterVertically,
