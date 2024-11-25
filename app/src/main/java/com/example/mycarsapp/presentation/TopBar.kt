@@ -86,7 +86,10 @@ fun TopBarAndBackground(
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 @Composable
 fun TopBarPreview() {
     MyCarsAppTheme {
