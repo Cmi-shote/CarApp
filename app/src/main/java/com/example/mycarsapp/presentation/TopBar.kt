@@ -9,11 +9,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -40,11 +44,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mycarsapp.R
+import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
 @Composable
 fun TopBarAndBackground(
-    @DrawableRes backgroundImage: Int,
     modifier: Modifier = Modifier,
     fontFamily: FontFamily = FontFamily(
         Font(R.font.inter_variablefont_opsz_wght)
@@ -62,7 +66,7 @@ fun TopBarAndBackground(
             .fillMaxSize()
             .background(colorResource(R.color.mid_night_dark))
             .padding(horizontal = 16.dp)
-            .padding(bottom = 16.dp)
+            .padding(top = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding())
     ) {
 
         Row(
@@ -145,12 +149,8 @@ fun TopBarAndBackground(
             }
         }
 
-        MainScreen(
-            titleText = "anotatedString",
-            contentText = stringResource(R.string.lorem_ipsum),
-            fontFamily = fontFamily,
-            backgroundImage,
-            modifier = Modifier.fillMaxWidth().padding(top = 30.dp)
+        ViewPagerSlider(
+            pages = samplePages
         )
     }
 }
@@ -163,7 +163,6 @@ fun TopBarAndBackground(
 fun TopBarPreview() {
     MyCarsAppTheme {
         TopBarAndBackground(
-            backgroundImage = R.drawable.home_screen_image1,
             modifier = Modifier.fillMaxSize()
         )
     }

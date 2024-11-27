@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
                     contentWindowInsets = WindowInsets(0) // Disable Scaffold’s default insets handling
                 ) { _ ->
                     TopBarAndBackground(
-                        backgroundImage = R.drawable.home_screen_image1,
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(WindowInsets.statusBars.asPaddingValues()) // Add padding for status bar

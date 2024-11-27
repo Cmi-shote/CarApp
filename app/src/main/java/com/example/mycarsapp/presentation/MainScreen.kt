@@ -1,18 +1,17 @@
 package com.example.mycarsapp.presentation
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,93 +20,84 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mycarsapp.R
+import com.example.mycarsapp.presentation.domain.PageData
+import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
 @Composable
-fun MainScreen(
-    titleText: String,
-    contentText: String,
-    fontFamily: FontFamily,
-    @DrawableRes backgroundImage: Int,
-    modifier: Modifier = Modifier
-) {
-
-    Box(
-        modifier = modifier.fillMaxSize()
+fun PagerContent(pageData: PageData) {
+    Box(modifier = Modifier.fillMaxSize()
+//        .background(pageData.backgroundColor)
     ) {
 
+        // Background Image
         Image(
-            painter = painterResource(backgroundImage),
-            contentDescription = "Car Image",
+            painter = painterResource(pageData.backgroundImage),
+            contentDescription = "Page Background",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.Center),
-            contentScale = ContentScale.Crop,
-            alpha = 0.7F
+            alpha = 0.5f
         )
 
-        Column {
-            Spacer(modifier = Modifier.height(120.dp))
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.Center)
+        ) {
 
             Text(
                 text = buildAnnotatedString {
-                    append("Your Driving Experience Just Got")
+                    append(pageData.title)
                     withStyle(
                         style = SpanStyle(
-                            color = colorResource(R.color.mustard_yellow),
+                            color = colorResource(pageData.highlightColor)
                         )
                     ) {
-                        append(" BETTER!")
+                        append(" ${pageData.highlightedText}")
                     }
                 },
-                fontFamily = fontFamily,
+                fontFamily = pageData.fontFamily,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 44.sp,
                 color = Color.White,
-                modifier = Modifier.padding(top = 16.dp).fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
 
             Text(
-                text = contentText,
-                fontFamily = fontFamily,
+                text = pageData.contentText,
+                fontFamily = pageData.fontFamily,
                 fontSize = 15.sp,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(top = 16.dp).width(350.dp)
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .width(350.dp)
             )
 
             Button(
-                modifier = Modifier.padding(top = 16.dp),
+                onClick = pageData.onButtonClick,
+                modifier = Modifier
+                    .padding(top = 16.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(R.color.mustard_yellow), // Background color
-                ),
-                onClick = { /*TODO*/ }
+                    containerColor = colorResource(pageData.buttonColor)
+                )
             ) {
                 Text(
-                    text = "View Gallery" + "  " + ">",
-                    style = TextStyle(
-                        fontFamily = fontFamily,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Color.Black
-                    ),
-                    modifier = Modifier
-                        .padding(horizontal = 10.dp)
-                        .align(Alignment.CenterVertically)
+                    text = pageData.buttonText,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color.Black
                 )
             }
         }
@@ -116,16 +106,9 @@ fun MainScreen(
 
 @Preview
 @Composable
-fun MainScreenPreview() {
+fun PagerContentPreview() {
+    val pageData = samplePages[0]
     MyCarsAppTheme {
-        MainScreen(
-            titleText = "Android",
-            contentText = stringResource(R.string.lorem_ipsum),
-            fontFamily = FontFamily(
-                Font(R.font.inter_variablefont_opsz_wght)
-            ),
-            backgroundImage = R.drawable.home_screen_image1,
-            modifier = Modifier.fillMaxSize()
-        )
+        PagerContent(pageData)
     }
 }
