@@ -1,5 +1,6 @@
 package com.example.mycarsapp.presentation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,75 +30,77 @@ import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ViewPagerSlider(
     pages: List<PageData>, // Each page data holds the required properties
     autoScrollDelay: Long = 2000L // Delay for auto-scroll
 ) {
-//    val pagerState = rememberPagerState(pageCount = { pages.size })
-//
-//    // Auto-scroll logic
-//    LaunchedEffect(pagerState) {
-//        while (true) {
-//            delay(autoScrollDelay)
-//            val nextPage = (pagerState.currentPage + 1) % pages.size
-//            pagerState.animateScrollToPage(nextPage)
-//        }
-//    }
-//
-//    Box(modifier = Modifier.fillMaxSize()) {
-//        HorizontalPager(
-//            state = pagerState,
-//            modifier = Modifier.fillMaxSize()
-//        ) { page ->
-//            PagerContent(pageData = pages[page])
-//        }
-//
-//        HorizontalPagerIndicatorCustom(
-//            pagerState = pagerState,
-//            modifier = Modifier
-//                .align(Alignment.BottomCenter)
-//                .padding(
-//                    bottom = WindowInsets.navigationBars
-//                        .asPaddingValues()
-//                        .calculateBottomPadding() + 16.dp
-//                ),
-//            activeColor = colorResource(R.color.mustard_yellow),
-//            inactiveColor = Color.Gray
-//        )
-//    }
-//}
-//
-//// Custom Horizontal Pager Indicator
-//@Composable
-//fun HorizontalPagerIndicatorCustom(
-//    pagerState: PagerState,
-//    modifier: Modifier = Modifier,
-//    activeColor: Color,
-//    inactiveColor: Color
-//) {
-//    val pageCount = pagerState.pageCount
-//    val currentPage = pagerState.currentPage
-//
-//    // Add indicator logic
-//    Box(modifier = modifier) {
-//        Row(
-//            horizontalArrangement = Arrangement.Center,
-//            modifier = Modifier.fillMaxWidth()
-//        ) {
-//            repeat(pageCount) { index ->
-//                Box(
-//                    modifier = Modifier
-//                        .padding(horizontal = 4.dp)
-//                        .size(8.dp)
-//                        .background(
-//                            if (index == currentPage) activeColor else inactiveColor,
-//                            shape = CircleShape
-//                        )
-//                )
-//            }
-//        }
-//    }
+    val pagerState = rememberPagerState(pageCount = { pages.size })
+
+    // Auto-scroll logic
+    LaunchedEffect(pagerState) {
+        while (true) {
+            delay(autoScrollDelay)
+            val nextPage = (pagerState.currentPage + 1) % pages.size
+            pagerState.animateScrollToPage(nextPage)
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize()
+        ) { page ->
+            PagerContent(pageData = pages[page])
+        }
+
+        HorizontalPagerIndicatorCustom(
+            pagerState = pagerState,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(
+                    bottom = WindowInsets.navigationBars
+                        .asPaddingValues()
+                        .calculateBottomPadding() + 16.dp
+                ),
+            activeColor = colorResource(R.color.mustard_yellow),
+            inactiveColor = Color.Gray
+        )
+    }
+}
+
+// Custom Horizontal Pager Indicator
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HorizontalPagerIndicatorCustom(
+    pagerState: PagerState,
+    modifier: Modifier = Modifier,
+    activeColor: Color,
+    inactiveColor: Color
+) {
+    val pageCount = pagerState.pageCount
+    val currentPage = pagerState.currentPage
+
+    // Add indicator logic
+    Box(modifier = modifier) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            repeat(pageCount) { index ->
+                Box(
+                    modifier = Modifier
+                        .padding(horizontal = 4.dp)
+                        .size(8.dp)
+                        .background(
+                            if (index == currentPage) activeColor else inactiveColor,
+                            shape = CircleShape
+                        )
+                )
+            }
+        }
+    }
 }
 
 @Preview

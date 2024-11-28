@@ -1,5 +1,6 @@
 package com.example.mycarsapp
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,7 +26,11 @@ class MainActivity : ComponentActivity() {
 
 //        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = Color(0xFF101010).toArgb()
+        WindowCompat.getInsetsController(window, window.decorView)?.apply {
+            isAppearanceLightStatusBars = false // Set to true for light text/icons
+        }
+
+        window.setBackgroundDrawable(ColorDrawable(Color(0xFF101010).toArgb())) // Set background color
 
         setContent {
             MyCarsAppTheme {
