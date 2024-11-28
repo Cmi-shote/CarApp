@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
 //        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowCompat.getInsetsController(window, window.decorView)?.apply {
+        WindowCompat.getInsetsController(window, window.decorView).apply {
             isAppearanceLightStatusBars = false // Set to true for light text/icons
         }
 
