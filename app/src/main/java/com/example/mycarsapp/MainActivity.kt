@@ -26,11 +26,7 @@ class MainActivity : ComponentActivity() {
 
 //        enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowCompat.getInsetsController(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false // Set to true for light text/icons
-        }
-
-        window.setBackgroundDrawable(ColorDrawable(Color(0xFF101010).toArgb())) // Set background color
+        window.statusBarColor = Color(0xFF101010).toArgb()
 
         setContent {
             MyCarsAppTheme {
