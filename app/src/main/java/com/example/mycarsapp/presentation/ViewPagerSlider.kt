@@ -30,7 +30,6 @@ import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ViewPagerSlider(
     pages: List<PageData>, // Each page data holds the required properties
@@ -71,7 +70,6 @@ fun ViewPagerSlider(
 }
 
 // Custom Horizontal Pager Indicator
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalPagerIndicatorCustom(
     pagerState: PagerState,
