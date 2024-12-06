@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -48,7 +48,7 @@ import com.example.mycarsapp.presentation.domain.carItemsSample
 import com.example.mycarsapp.presentation.domain.toDisplayableNo
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun Gallery(
     carItems: List<CarModelData>,
@@ -77,15 +77,17 @@ fun Gallery(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2), // Adjust to 2 columns for better layout
-            modifier = Modifier.padding(16.dp),
-            contentPadding = PaddingValues(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            maxItemsInEachRow = 3,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
         ) {
-            items(carItems) { carItem ->
-                CarGrid(carModel = carItem)
+            carItems.forEach { carItem ->
+                CarGrid(carModel = carItem,
+                    modifier = Modifier.width(180.dp))
             }
         }
     }
@@ -101,7 +103,7 @@ fun CarGrid(
             .size(200.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(colorResource(R.color.dark_gray))
-            .padding(16.dp)
+            .padding()
     ) {
         Card(
             modifier = Modifier
