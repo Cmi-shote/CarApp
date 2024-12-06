@@ -20,6 +20,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuDefaults.outlinedTextFieldColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -46,6 +48,7 @@ import com.example.mycarsapp.presentation.domain.carItemsSample
 import com.example.mycarsapp.presentation.domain.toDisplayableNo
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Gallery(
     carItems: List<CarModelData>,
@@ -55,11 +58,8 @@ fun Gallery(
         mutableStateOf("Search car model")
     }
 
-    var selectedTabIndex by remember {
-        mutableStateOf(0)
-    }
-
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()
+        .background(colorResource(R.color.mid_night_dark))) {
         OutlinedTextField(
             value = searchText,
             onValueChange = { text ->
@@ -67,16 +67,25 @@ fun Gallery(
             },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 16.dp)
+                .padding(top = 16.dp),
+            colors = outlinedTextFieldColors(
+                cursorColor = Color.White, // Cursor color
+                focusedBorderColor = Color.White, // Border color when focused
+                unfocusedBorderColor = Color.Gray, // Border color when not focused
+            ),
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3)
+            columns = GridCells.Fixed(2), // Adjust to 2 columns for better layout
+            modifier = Modifier.padding(16.dp),
+            contentPadding = PaddingValues(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(carItems) {carItem ->
-                CarGrid(carItem)
+            items(carItems) { carItem ->
+                CarGrid(carModel = carItem)
             }
         }
     }
@@ -92,6 +101,7 @@ fun CarGrid(
             .size(200.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(colorResource(R.color.dark_gray))
+            .padding(16.dp)
     ) {
         Card(
             modifier = Modifier
@@ -106,7 +116,7 @@ fun CarGrid(
                     .padding(10.dp)
             ) {
                 Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_car),
+                    imageVector = ImageVector.vectorResource(carModel.backgroundImage),
                     contentDescription = "null",
                     modifier = Modifier
                         .size(200.dp)

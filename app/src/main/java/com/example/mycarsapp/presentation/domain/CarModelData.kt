@@ -22,19 +22,19 @@ data class DisplayableNumber(
 
 val carItemsSample = listOf(
     CarModelData(
-        backgroundImage = R.drawable.car,
+        backgroundImage = R.drawable.ic_car,
         model = "GS-570",
         size = "Medium",
         price = "568090"
     ),
     CarModelData(
-        backgroundImage = R.drawable.home_screen_image1,
+        backgroundImage = R.drawable.ic_car,
         model = "GS-570",
         size = "Medium",
         price = "568090"
     ),
     CarModelData(
-        backgroundImage = R.drawable.home_screen_image1,
+        backgroundImage = R.drawable.ic_car,
         model = "GS-570",
         size = "Medium",
         price = "568090"
