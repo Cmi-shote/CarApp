@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mid_night_dark">#FF101010</color>
     <color name="light_gray">#FF606060</color>
+    <color name="gray">#FFD4D4D4</color>
     <color name="dark_gray">#FF373636</color>
     <color name="mustard_yellow">#FEE716</color>
 </resources>

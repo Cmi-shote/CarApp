@@ -1,6 +1,5 @@
 package com.example.mycarsapp.presentation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,15 +24,16 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycarsapp.R
-import com.example.mycarsapp.presentation.domain.PageData
 import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 import kotlinx.coroutines.delay
 
 @Composable
-fun ViewPagerSlider(
-    pages: List<PageData>, // Each page data holds the required properties
-    autoScrollDelay: Long = 2000L // Delay for auto-scroll
+fun <T> ViewPagerSlider(
+    pages: List<T>, // Each page data holds the required properties
+    autoScrollDelay: Long = 2000L, // Delay for auto-scroll,
+    content: @Composable (pageData: T) -> Unit,
+    modifier: Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = { pages.size })
 
@@ -46,12 +46,12 @@ fun ViewPagerSlider(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxWidth()) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxSize()
         ) { page ->
-            PagerContent(pageData = pages[page])
+            content(pages[page])
         }
 
         HorizontalPagerIndicatorCustom(
@@ -105,6 +105,10 @@ fun HorizontalPagerIndicatorCustom(
 @Composable
 fun ViewPagerSliderPreview() {
     MyCarsAppTheme {
-        ViewPagerSlider(pages = samplePages)
+        ViewPagerSlider(
+            pages = samplePages,
+            modifier = Modifier.fillMaxSize(),
+            content = { pageData -> PagerContent(pageData) } // Pass PagerContent as the lambda
+        )
     }
 }

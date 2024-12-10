@@ -150,7 +150,9 @@ fun TopBarAndBackground(
         }
 
         ViewPagerSlider(
-            pages = samplePages
+            pages = samplePages,
+            modifier = Modifier.fillMaxWidth(),
+            content = { pageData -> PagerContent(pageData) }
         )
     }
 }

@@ -1,14 +1,12 @@
 package com.example.mycarsapp.presentation.domain
 
-import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import com.example.mycarsapp.R
 import java.text.NumberFormat
 import java.util.Locale
 
 data class CarModelData(
-    @DrawableRes val backgroundImage: Int,
+    val backgroundImage: List<Int>,
     val backgroundColor: Color = Color(0xFF101010),
     val model: String,
     val size: String,
@@ -22,19 +20,19 @@ data class DisplayableNumber(
 
 val carItemsSample = listOf(
     CarModelData(
-        backgroundImage = R.drawable.ic_car,
+        backgroundImage = listOf(R.drawable.silver_jeep, R.drawable.red_jeep, R.drawable.blue_jeep),
         model = "GS-570",
         size = "Medium",
         price = "568090"
     ),
     CarModelData(
-        backgroundImage = R.drawable.ic_car,
+        backgroundImage = listOf(R.drawable.silver_car),
         model = "GS-570",
         size = "Medium",
         price = "568090"
     ),
     CarModelData(
-        backgroundImage = R.drawable.ic_car,
+        backgroundImage = listOf(R.drawable.ic_car),
         model = "GS-570",
         size = "Medium",
         price = "568090"

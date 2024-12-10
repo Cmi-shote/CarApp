@@ -1,6 +1,7 @@
 package com.example.mycarsapp.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -51,7 +52,6 @@ fun PagerContent(pageData: PageData) {
                 .padding(16.dp)
                 .align(Alignment.Center)
         ) {
-
             Text(
                 text = buildAnnotatedString {
                     append(pageData.title)
@@ -70,6 +70,7 @@ fun PagerContent(pageData: PageData) {
                 color = Color.White,
                 modifier = Modifier.fillMaxWidth()
             )
+
 
             Text(
                 text = pageData.contentText,

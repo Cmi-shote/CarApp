@@ -33,7 +33,7 @@ val samplePages = listOf(
     ),
     PageData(
         backgroundImage = R.drawable.home_screen_image2,
-        backgroundColor = Color.Black,
+//        backgroundColor = Color.Black,
         title = "Unleash the Power of",
         highlightedText = "PERFORMANCE!",
         contentText = "Discover high-performance cars for every journey.",

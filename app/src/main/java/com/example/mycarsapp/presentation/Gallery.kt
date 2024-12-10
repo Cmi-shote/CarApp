@@ -1,5 +1,6 @@
 package com.example.mycarsapp.presentation
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,7 +50,7 @@ import com.example.mycarsapp.presentation.domain.carItemsSample
 import com.example.mycarsapp.presentation.domain.toDisplayableNo
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun Gallery(
     carItems: List<CarModelData>,
@@ -117,11 +119,11 @@ fun CarGrid(
                     .fillMaxSize()
                     .padding(10.dp)
             ) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(carModel.backgroundImage),
+                Image(
+                    painter = painterResource(carModel.backgroundImage[0]),
                     contentDescription = "null",
                     modifier = Modifier
-                        .size(200.dp)
+                        .size(150.dp)
                         .align(Alignment.Center)
                 )
 
