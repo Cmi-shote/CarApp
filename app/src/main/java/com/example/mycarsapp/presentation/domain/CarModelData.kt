@@ -1,17 +1,18 @@
 package com.example.mycarsapp.presentation.domain
 
-import androidx.compose.ui.graphics.Color
+import android.os.Parcelable
 import com.example.mycarsapp.R
+import kotlinx.serialization.Serializable
 import java.text.NumberFormat
 import java.util.Locale
 
+@Serializable
 data class CarModelData(
     val backgroundImage: List<Int>,
-    val backgroundColor: Color = Color(0xFF101010),
     val model: String,
     val size: String,
     val price: String
-)
+) : Parcelable
 
 data class DisplayableNumber(
     val value: String,

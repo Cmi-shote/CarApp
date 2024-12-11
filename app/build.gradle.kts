@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -70,5 +71,10 @@ dependencies {
     //pager
     implementation(libs.pager)
     implementation(libs.pager.indicators)
-
+    //coil
+    implementation(libs.coil)
+    //compose navigation
+    implementation(libs.navigation.compose)
+    //kotlinx serialization
+    implementation(libs.kotlinx.serialization.json)
 }
