@@ -1,6 +1,5 @@
-package com.example.mycarsapp.presentation
+package com.example.mycarsapp.presentation.general
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,11 +13,11 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -34,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -44,12 +42,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mycarsapp.R
-import com.example.mycarsapp.presentation.domain.samplePages
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 
 @Composable
-fun TopBarAndBackground(
+fun CustomTopBar(
     modifier: Modifier = Modifier,
+    isLoggedIn: Boolean = false,
     fontFamily: FontFamily = FontFamily(
         Font(R.font.inter_variablefont_opsz_wght)
     )
@@ -63,7 +61,7 @@ fun TopBarAndBackground(
 
     Box(
         modifier = modifier
-            .fillMaxSize()
+            .wrapContentHeight()
             .background(colorResource(R.color.mid_night_dark))
             .padding(horizontal = 16.dp)
             .padding(top = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding())
@@ -127,44 +125,37 @@ fun TopBarAndBackground(
             }
 
 
-            Button(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(5.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(R.color.mustard_yellow),
-                ),
-                contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp), // Reduce inner padding to make button smaller
-                modifier = Modifier
-                    .height(30.dp)
-            ) {
-                Text(
-                    text = "LOGIN",
-                    style = TextStyle(
-                        fontFamily = fontFamily,
-                        fontSize = 10.sp, // Keep font size as desired
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
+            if (!isLoggedIn) {
+                Button(
+                    onClick = { /*TODO*/ },
+                    shape = RoundedCornerShape(5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colorResource(R.color.mustard_yellow),
+                    ),
+                    contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp), // Reduce inner padding to make button smaller
+                    modifier = Modifier
+                        .height(30.dp)
+                ) {
+                    Text(
+                        text = "LOGIN",
+                        style = TextStyle(
+                            fontFamily = fontFamily,
+                            fontSize = 10.sp, // Keep font size as desired
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
                     )
-                )
+                }
             }
         }
-
-        ViewPagerSlider(
-            pages = samplePages,
-            modifier = Modifier.fillMaxWidth(),
-            content = { pageData -> PagerContent(pageData) }
-        )
     }
 }
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
+@Preview
 @Composable
 fun TopBarPreview() {
     MyCarsAppTheme {
-        TopBarAndBackground(
+        CustomTopBar(
             modifier = Modifier.fillMaxSize()
         )
     }

@@ -1,4 +1,4 @@
-package com.example.mycarsapp.presentation
+package com.example.mycarsapp.presentation.general
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycarsapp.R
 import com.example.mycarsapp.presentation.domain.samplePages
+import com.example.mycarsapp.presentation.home.PagerContent
 import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 import kotlinx.coroutines.delay
 
