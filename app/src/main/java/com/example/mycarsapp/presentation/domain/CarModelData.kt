@@ -1,6 +1,5 @@
 package com.example.mycarsapp.presentation.domain
 
-import android.os.Parcelable
 import com.example.mycarsapp.R
 import kotlinx.serialization.Serializable
 import java.text.NumberFormat
@@ -12,7 +11,7 @@ data class CarModelData(
     val model: String,
     val size: String,
     val price: String
-) : Parcelable
+)
 
 data class DisplayableNumber(
     val value: String,
