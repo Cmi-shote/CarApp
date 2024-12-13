@@ -64,7 +64,11 @@ fun CustomTopBar(
             .wrapContentHeight()
             .background(colorResource(R.color.mid_night_dark))
             .padding(horizontal = 16.dp)
-            .padding(top = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding() + 5.dp)
+            .padding(
+                top = WindowInsets.statusBars
+                    .asPaddingValues()
+                    .calculateBottomPadding() + 5.dp
+            )
     ) {
 
         Row(
