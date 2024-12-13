@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
+import com.example.mycarsapp.presentation.navigation.CarsNavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +17,9 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = Color(0xFF101010).toArgb()
 
         setContent {
+            val navController = rememberNavController()
 
+            CarsNavHost(navController)
         }
     }
 }
