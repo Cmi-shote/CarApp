@@ -8,6 +8,7 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
+koin = "3.5.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +29,9 @@ pager = { module = "com.google.accompanist:accompanist-pager", version = "0.32.0
 pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version = "0.32.0" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version = "2.8.5" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.6.3"}
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 coil = { module = "io.coil-kt:coil-compose", version = "2.3.0" }
 
 [plugins]

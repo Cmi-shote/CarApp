@@ -77,4 +77,9 @@ dependencies {
     implementation(libs.navigation.compose)
     //kotlinx serialization
     implementation(libs.kotlinx.serialization.json)
+
+    // Dependency injection
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
 }
