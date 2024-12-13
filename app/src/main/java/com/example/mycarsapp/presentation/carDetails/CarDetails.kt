@@ -1,6 +1,7 @@
 package com.example.mycarsapp.presentation.carDetails
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -12,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,11 +42,12 @@ import com.example.mycarsapp.ui.theme.MyCarsAppTheme
 fun CarDetails(
     carModelData: CarModelData,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     ScreenLayout {
         Column(
             modifier = modifier
-                .verticalScroll(rememberScrollState())
+//                .verticalScroll(rememberScrollState())
                 .fillMaxSize()
                 .background(colorResource(R.color.mid_night_dark))
         ) {
@@ -62,7 +62,9 @@ fun CarDetails(
                     imageVector = ImageVector.vectorResource(R.drawable.baseline_arrow_back_24),
                     contentDescription = null,
                     tint = colorResource(R.color.mustard_yellow),
-                    modifier = Modifier.weight(0.25f)
+                    modifier = Modifier.weight(0.25f).clickable {
+                        onClick()
+                    }
                 )
 
                 Text(
@@ -141,14 +143,14 @@ fun CarDetails(
 
 @Preview(
     showBackground = true,
-    showSystemUi = true
 )
 @Composable
 fun CarDetailsPreview() {
     MyCarsAppTheme {
         CarDetails(
             carModelData = carItemsSample[0],
-            modifier = Modifier
+            modifier = Modifier,
+            {}
         )
     }
 }

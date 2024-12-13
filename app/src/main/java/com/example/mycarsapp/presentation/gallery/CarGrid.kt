@@ -38,7 +38,8 @@ import com.example.mycarsapp.presentation.domain.toDisplayableNo
 @Composable
 fun CarGrid(
     carModel: CarModelData,
-    modifier: Modifier = Modifier
+    onButtonClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
@@ -112,7 +113,7 @@ fun CarGrid(
                 )
 
                 Button(
-                    onClick = {},
+                    onClick = { onButtonClick() },
                     contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
                     modifier = Modifier
                         .height(25.dp),
